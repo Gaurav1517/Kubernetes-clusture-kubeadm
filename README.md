@@ -345,7 +345,7 @@ kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
 Use the following command to join a worker node to the cluster:
 
 ```bash
-kubeadm join 192.168.157.137:6443 --token xwep0b.31dygrntckqkv64v --discovery-token-ca-cert-hash sha256:a46ee3a4238f7sfdsafasfg457e36b8e3da400df91039c8dfa57f391af016b21
+kubeadm join 192.168.157.137:6443 --token xwep0b.31dygrntckqkv43v --discovery-token-ca-cert-hash sha256:a46ee3a4238f7sfdsafasfg457e36b8e3da400df91039c8dfa57f391af016b21
 ```
 
 ## Kubernetes Cheat Sheet
