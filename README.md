@@ -56,3 +56,50 @@ sudo firewall-cmd --zone=public --add-port=6443/tcp,2379-2380/tcp,10250/tcp,1025
 ```bash
 sudo firewall-cmd --reload
 ```
+## Check Firewall Ports
+```bash
+sudo firewall-cmd --zone=public --list-ports
+```
+
+## Allow Ports on Worker Node
+To allow additional ports on the worker node:
+```bash
+
+# Open port 10250 for Kubelet API
+sudo firewall-cmd --zone=public --add-port=10250/tcp --permanent
+
+# Open port 10256 for kube-proxy
+sudo firewall-cmd --zone=public --add-port=10256/tcp --permanent
+
+# Open port range 30000-32767 for NodePort services
+sudo firewall-cmd --zone=public --add-port=30000-32767/tcp --permanent
+```
+
+## Or, add these additional ports in a single command:
+
+```bash
+sudo firewall-cmd --zone=public --add-port=10250/tcp,10256/tcp,30000-32767/tcp --permanent
+```
+
+## Reload Firewall on Worker Node
+
+```bash
+sudo firewall-cmd --reload
+```
+
+## Check Firewall Ports on Worker Node
+
+```bash
+sudo firewall-cmd --zone=public --list-ports
+```
+
+## Disable Swap
+Disable swap if not on a cloud instance:
+
+```bash
+sudo swapoff -a
+sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
+```
+
+
+
