@@ -351,7 +351,7 @@ kubeadm join 192.168.157.137:6443 --token xwep0b.31dygrntckqkv64v --discovery-to
 ## Kubernetes Cheat Sheet
 
 For additional commands and references, visit the Kubernetes Cheat Sheet.
-`<link>` : https://k8s-docs.netlify.app/en/docs/reference/kubectl/cheatsheet/
+`<link>` :<https://k8s-docs.netlify.app/en/docs/reference/kubectl/cheatsheet/>
 
 This `README.md` file summarizes
 
