@@ -166,6 +166,47 @@ sudo systemctl enable --now containerd
 sudo systemctl status containerd
 ```
 
+
+## OR
+## Set Up Docker Repository
+#Create a Docker repository file .
+```bash
+sudo vim /etc/yum.repos.d/docker-ce.repo
+```
+
+#Add the following content to the file, adjusting the URL for CentOS Stream 8 compatibility:
+```bash
+[docker-ce-stable]
+name=Docker CE Stable - $basearch
+baseurl=https://download.docker.com/linux/centos/8/$basearch/stable
+enabled=1
+gpgcheck=1
+gpgkey=https://download.docker.com/linux/centos/gpg
+```
+
+Save and close the file.
+
+## 2. Install containerd.io
+#Now, update the repository and install containerd.io:
+```bash
+sudo yum clean all
+sudo yum makecache fast
+sudo yum install -y containerd.io
+```
+
+## 3. Start and Enable containerd
+#After installation, enable and start the containerd service:
+```bash
+sudo systemctl enable --now containerd
+```
+
+## 4. Verify Installation
+#Check the status of containerd to ensure it’s running:
+```bash
+sudo systemctl status containerd
+```
+
+
 ## Install and Configure Containerd Package
 
 ```bash
