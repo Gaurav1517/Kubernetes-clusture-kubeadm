@@ -29,4 +29,30 @@ systemctl stop firewalld.service
 systemctl disable firewalld.service
 systemctl status firewalld.service
 ```
+## Allow Firewall Ports on Master Node
 
+To open specific ports, run the following commands:
+```bash
+# Open port 6443 for the Kubernetes API server
+sudo firewall-cmd --zone=public --add-port=6443/tcp --permanent
+
+# Open ports 2379-2380 for etcd server client API
+sudo firewall-cmd --zone=public --add-port=2379-2380/tcp --permanent
+
+# Open port 10250 for Kubelet API
+sudo firewall-cmd --zone=public --add-port=10250/tcp --permanent
+
+# Open port 10259 for kube-scheduler
+sudo firewall-cmd --zone=public --add-port=10259/tcp --permanent
+
+# Open port 10257 for other Kubernetes services
+sudo firewall-cmd --zone=public --add-port=10257/tcp --permanent
+```
+## To add multiple ports in a single command:
+```bash
+sudo firewall-cmd --zone=public --add-port=6443/tcp,2379-2380/tcp,10250/tcp,10259/tcp,10257/tcp --permanent
+```
+## Reload Firewall
+```bash
+sudo firewall-cmd --reload
+```
