@@ -9,7 +9,7 @@ This document outlines the steps to install and configure Kubernetes on a Linux 
 
 ## Table of Contents
 
-1. [Disable Firewall or Allow Ports](#disable-firewall-or-allow-ports)
+1. [Firewall Allow Ports](#firewall-allow-ports)
 2. [Disable Swap](#disable-swap)
 3. [Load Kernel Modules](#load-kernel-modules)
 4. [Install and Configure Containerd](#install-and-configure-containerd)
@@ -21,16 +21,8 @@ This document outlines the steps to install and configure Kubernetes on a Linux 
 10. [Join Worker Node to the Cluster](#join-worker-node-to-the-cluster)
 11. [Kubernetes Cheat Sheet](#kubernetes-cheat-sheet)
 
-## Disable Firewall or Allow Ports
+## Firewall Allow Ports
 
-You can either disable the firewall or allow specific ports for Kubernetes.
-
-### Disable Firewall
-```bash
-systemctl stop firewalld.service
-systemctl disable firewalld.service
-systemctl status firewalld.service
-```
 ## Allow Firewall Ports on Master Node
 
 To open specific ports, run the following commands:
@@ -351,9 +343,10 @@ kubeadm join 192.168.157.137:6443 --token xwep0b.31dygrntckqkv43v --discovery-to
 ## Kubernetes Cheat Sheet
 
 For additional commands and references, visit the Kubernetes Cheat Sheet.
-`<link>` :<https://k8s-docs.netlify.app/en/docs/reference/kubectl/cheatsheet/>
+`<link>` : <https://k8s-docs.netlify.app/en/docs/reference/kubectl/cheatsheet/>
 
-This `README.md` file summarizes
+
+
 
 
 
