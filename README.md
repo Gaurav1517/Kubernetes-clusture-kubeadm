@@ -3,7 +3,7 @@ Create kubernetes v1.29 clusture using kubeadm in centos-8
 ## Snaphot 
 ![Application Screenshot](Images/snapshot.png)
 
-# Kubernetes Installation Steps  <a href="https://kubernetes.io"><img src="https://www.svgrepo.com/show/376331/kubernetes.svg" alt="Kubernetes" width="100"></a>
+# <a href="https://kubernetes.io"><img src="https://www.svgrepo.com/show/376331/kubernetes.svg" alt="Kubernetes" width="60"></a> Kubernetes Installation Steps  
 
 This document outlines the steps to install and configure Kubernetes on a Linux system, including firewall configurations and the installation of required components.
 
