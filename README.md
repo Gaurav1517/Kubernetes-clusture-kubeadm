@@ -195,9 +195,11 @@ sudo dnf autoremove -y
 ## Install and Configure Containerd
 
 ```bash
-sudo yum install -y yum-utils
-sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-dnf update -y
+sudo dnf update -y 
+#Install the dnf-plugins-core package (which provides the commands to manage your DNF repositories) and set up the repository.
+sudo dnf -y install dnf-plugins-core
+sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+sudo dnf update -y
 ```
 
 ## Install Containerd.io
@@ -205,7 +207,7 @@ dnf update -y
 ``` bash
 sudo yum clean all
 sudo yum makecache fast
-sudo yum install -y containerd.io
+sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
 
 ## Start and Enable Containerd
@@ -213,6 +215,12 @@ sudo yum install -y containerd.io
 ```bash
 sudo systemctl enable --now containerd
 sudo systemctl status containerd
+```
+## Start and Enable Docker
+
+```bash
+sudo systemctl enable --now docker.service
+sudo systemctl status docker.service
 ```
 
 
@@ -281,7 +289,9 @@ sudo systemctl enable containerd
 sudo systemctl status containerd
 ```
 
-## Install CRI-O
+## Install CRI-O (OPTIONAL)
+NOTE: No, if you have already installed Containerd, you do not need to install CRI-O for Kubernetes installation. Both Containerd and CRI-O are container runtimes that can be used with Kubernetes, but you only need one of them.
+
 Add CRI-O Repository
 
 ```bash
