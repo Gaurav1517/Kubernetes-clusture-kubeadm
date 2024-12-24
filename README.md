@@ -53,7 +53,7 @@ sudo firewall-cmd --zone=public --add-port=10257/tcp --permanent
 ```
 ## To add multiple ports in a single command:
 ```bash
-sudo firewall-cmd --zone=public --add-port=6443/tcp,2379-2380/tcp,10250/tcp,10259/tcp,10257/tcp --permanent
+sudo firewall-cmd --zone=public --add-port=6443/tcp --add-port=2379-2380/tcp --add-port=10250/tcp --add-port=10259/tcp --add-port=10257/tcp --permanent
 ```
 ## Reload Firewall
 ```bash
@@ -81,7 +81,7 @@ sudo firewall-cmd --zone=public --add-port=30000-32767/tcp --permanent
 ## Or, add these additional ports in a single command:
 
 ```bash
-sudo firewall-cmd --zone=public --add-port=10250/tcp,10256/tcp,30000-32767/tcp --permanent
+sudo firewall-cmd --zone=public --add-port=10250/tcp --add-port=10256/tcp --add-port=30000-32767/tcp --permanent
 ```
 
 ## Reload Firewall on Worker Node
