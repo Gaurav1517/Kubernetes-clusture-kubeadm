@@ -13,6 +13,9 @@ Check this by using the command: `ping <IP>`.
 ```sh
 ping -c 4 192.168.157.137
 ```
+```sh
+ping -c 4 192.168.157.139
+```
 ## Table of Contents
 
 1. [Firewall Allow Ports](#firewall-allow-ports)
