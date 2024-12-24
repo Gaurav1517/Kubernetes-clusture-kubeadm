@@ -11,7 +11,7 @@ This document outlines the steps to install and configure Kubernetes on a Linux 
 Before installation, both machines should be able to ping each other, whether in the cloud or on a virtual machine (VM).
 Check this by using the command: `ping <IP>`.
 ```sh
-ping -c 4 192.168.57.137
+ping -c 4 192.168.157.137
 ```
 ## Table of Contents
 
