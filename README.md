@@ -12,7 +12,7 @@ Before installation, both machines should be able to ping each other, whether in
 Check this by using the command: `ping <IP>`.
 ```sh
 ping -c 4 192.168.57.137
-``
+```
 ## Table of Contents
 
 1. [Firewall Allow Ports](#firewall-allow-ports)
