@@ -311,6 +311,15 @@ EOF
 dnf install -y container-selinux
 sudo dnf install -y cri-o
 ```
+## Set SELinux to permissive mode:
+
+These instructions are for Kubernetes 1.29.
+
+###Set SELinux in permissive mode (effectively disabling it)
+```bash
+sudo setenforce 0
+sudo sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
+```
 
 ## Set Up Kubernetes YUM Repository
 
