@@ -384,6 +384,55 @@ Check the status of the pods:
 ```bash
 watch kubectl get pods -n calico-system
 ```
+## Note: 
+The `calico-kube-controllers` pod is stuck in the `Pending` state due to a scheduling issue. The specific error message in the events is:
+
+```
+0/1 nodes are available: 1 node(s) had untolerated taint {node-role.kubernetes.io/control-plane: }. preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.
+```
+
+### Problem Explanation:
+The issue is that the pod is unable to be scheduled on the node because the node has a taint `node-role.kubernetes.io/control-plane`, which prevents regular workloads from being scheduled there unless they tolerate this taint.
+
+### Solution:
+You need to add a toleration to your pod configuration to allow it to be scheduled on a node with this taint.
+
+#### Option 1: Add Toleration to the `calico-kube-controllers` Deployment
+You can modify the `calico-kube-controllers` deployment to include a toleration for the `node-role.kubernetes.io/control-plane` taint.
+
+To do this, update the deployment with the following toleration:
+
+```yaml
+tolerations:
+  - key: "node-role.kubernetes.io/control-plane"
+    operator: "Exists"
+    effect: "NoSchedule"
+```
+
+You can patch the deployment using the `kubectl` command:
+
+```bash
+kubectl patch deployment calico-kube-controllers -n kube-system --patch '{"spec": {"template": {"spec": {"tolerations": [{"key": "node-role.kubernetes.io/control-plane", "operator": "Exists", "effect": "NoSchedule"}]}}}}'
+```
+
+#### Option 2: Remove the Taint from the Node
+Alternatively, you can remove the `control-plane` taint from the node, which would allow the pod to be scheduled without requiring a toleration.
+
+To remove the taint from the node:
+
+```bash
+kubectl taint nodes <node-name> node-role.kubernetes.io/control-plane:NoSchedule-
+```
+
+Replace `<node-name>` with the name of the node where the pod is trying to be scheduled.
+
+After applying one of these solutions, check the pod status again with:
+
+```bash
+kubectl get pods -n kube-system
+```
+
+The `calico-kube-controllers` pod should now be scheduled and running successfully.
 
 ## Remove Taints from Control Plane
 
