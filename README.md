@@ -145,6 +145,52 @@ Verify that the modules are loaded:
 lsmod | grep br_netfilter
 lsmod | grep overlay
 ```
+## Note: Before installing containerd and Docker, make sure to remove `runc` and `podman` on CentOS Stream 8. Follow these steps:
+
+### Step 1: Remove Podman
+1. Check if Podman is installed:
+   ```bash
+   podman --version
+   ```
+
+2. Uninstall Podman:
+   ```bash
+   sudo dnf remove -y podman
+   ```
+
+3. Verify Podman removal:
+   ```bash
+   podman --version
+   ```
+   If the command returns "command not found," Podman has been successfully removed.
+
+---
+
+### Step 2: Remove runc
+1. Check the installed version of `runc`:
+   ```bash
+   runc --version
+   ```
+
+2. Uninstall `runc`:
+   ```bash
+   sudo dnf remove -y runc
+   ```
+
+3. Verify `runc` removal:
+   ```bash
+   runc --version
+   ```
+   Again, if the command returns "command not found," `runc` has been removed.
+
+---
+
+### Step 3: Clean Up Dependencies (Optional)
+To clean up any unused dependencies or packages that were installed with Podman or `runc`:
+```bash
+sudo dnf autoremove -y
+```
+---
 
 ## Install and Configure Containerd
 
